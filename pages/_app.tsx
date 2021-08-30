@@ -22,19 +22,14 @@ function Robes({ Component, pageProps }) {
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@worm_emoji" />
-        <meta property="og:url" content="https://robes.market" />
-        <meta property="og:title" content="robes.market" />
+        <meta property="og:url" content="https://weeb.market" />
+        <meta property="og:title" content="weeb.market" />
         <link rel="icon" type="image/png" href="/favicon.png" />
         <meta
           property="og:description"
-          content="See the floor price of Divine Robes from the Loot project."
+          content="See the floor price of Katanas from the Loot project."
         />
-        <meta property="og:image" content="https://robes.market/og.png" />
-        <script
-          data-goatcounter="https://divinerobes.goatcounter.com/count"
-          async
-          src="//gc.zgo.at/count.js"
-        ></script>
+        <meta property="og:image" content="https://weeb.market/og.png" />
       </Head>
     </>
   )

@@ -1,19 +1,5 @@
-import Link from 'next/link'
-import { RobeInfo } from './api/robes'
 import { format as ts } from 'timeago.js'
-
-export async function getStaticProps() {
-  const res = await fetch('https://robes-market.vercel.app/api/robes')
-  const data = await res.json()
-
-  return {
-    props: {
-      robes: data.robes,
-      lastUpdate: data.lastUpdate,
-    },
-    revalidate: 300,
-  }
-}
+import { fetchRobes, RobeInfo } from '../utils/robes'
 
 interface Props {
   robes: RobeInfo[]
@@ -37,14 +23,14 @@ const Robe = ({ robe }: { robe: RobeInfo }) => {
 const IndexPage = ({ robes, lastUpdate }: Props) => {
   return (
     <div className="py-3 md:pb-0 font-mono flex flex-col justify-center items-center gap-4 pt-10 md:w-screen">
-      <h1 className="text-lg md:text-3xl">Divine Robes</h1>
+      <h1 className="text-lg md:text-3xl">Katanas</h1>
       <div className="text-center max-w-screen-md md:leading-loose">
         <p className="md:text-xl">
-          There are {robes.length} bags for sale with Divine Robes. The floor
+          There are {robes.length} bags for sale with Katanas. The floor
           price is {robes[0].price} ETH.
         </p>
         <p className="md:text-lg pt-2">
-          Site by{' '}
+          Original <a target="_blank" href="robes.market" className="underline">robes.market</a> by{' '}
           <a
             target="_blank"
             href="https://twitter.com/worm_emoji"
@@ -52,13 +38,13 @@ const IndexPage = ({ robes, lastUpdate }: Props) => {
           >
             worm_emoji
           </a>
-          . Join the{' '}
+          . weeb.market by{' '}
           <a
             target="_blank"
+            href="https://twitter.com/1ofthemanymatts"
             className="underline"
-            href="https://divineroles.vercel.app"
           >
-            Discord
+            one of the many matts
           </a>
           .
         </p>
@@ -71,6 +57,18 @@ const IndexPage = ({ robes, lastUpdate }: Props) => {
       </div>
     </div>
   )
+}
+
+export async function getStaticProps() {
+  const robes = await fetchRobes();
+
+  return {
+    props: {
+      robes,
+      lastUpdate: new Date().toISOString(),
+    },
+    revalidate: 300,
+  }
 }
 
 export default IndexPage

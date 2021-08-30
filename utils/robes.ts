@@ -1,9 +1,8 @@
-import { NextApiRequest, NextApiResponse } from 'next'
 import pMap from 'p-map'
 import { chunk, flatten, orderBy } from 'lodash'
 import { utils as etherUtils, BigNumber } from 'ethers'
-import type { OpenseaResponse, Asset } from '../../../utils/openseaTypes'
-import RobeIDs from '../../../data/robes-ids.json'
+import type { OpenseaResponse, Asset } from './openseaTypes'
+import RobeIDs from '../data/robes-ids.json'
 
 const chunked = chunk(RobeIDs, 20)
 const apiKey = process.env.OPENSEA_API_KEY
@@ -13,9 +12,9 @@ const fetchRobePage = async (ids: string[]) => {
   url += ids.map((id) => `token_ids=${id}`).join('&')
 
   const res = await fetch(url, {
-    headers: {
-      'X-API-KEY': apiKey,
-    },
+    // headers: {
+    //   'X-API-KEY': apiKey,
+    // },
   })
   const json: OpenseaResponse = await res.json()
   return json.assets
@@ -28,7 +27,7 @@ export interface RobeInfo {
   svg: string
 }
 
-const fetchRobes = async () => {
+export const fetchRobes = async () => {
   const data = await pMap(chunked, fetchRobePage, { concurrency: 2 })
   const mapped = flatten(data)
     .filter((d) => {
@@ -48,14 +47,3 @@ const fetchRobes = async () => {
     })
   return orderBy(mapped, ['price', 'id'], ['asc', 'asc'])
 }
-
-const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
-  try {
-    const robes = await fetchRobes()
-    res.status(200).json({ robes, lastUpdate: new Date() })
-  } catch (err) {
-    res.status(500).json({ statusCode: 500, message: err.message })
-  }
-}
-
-export default handler
