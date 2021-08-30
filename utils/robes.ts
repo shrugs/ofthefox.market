@@ -8,7 +8,7 @@ const chunked = chunk(RobeIDs, 20)
 const apiKey = process.env.OPENSEA_API_KEY
 
 const fetchRobePage = async (ids: string[]) => {
-  let url = 'https://api.opensea.io/api/v1/assets?collection=loot-rng&'
+  let url = 'https://api.opensea.io/api/v1/assets?collection=lootproject&'
   url += ids.map((id) => `token_ids=${id}`).join('&')
 
   const res = await fetch(url, {
