@@ -30,7 +30,7 @@ const IndexPage = ({ robes, lastUpdate }: Props) => {
           price is {robes[0].price} ETH.
         </p>
         <p className="md:text-lg pt-2">
-          Original <a target="_blank" href="robes.market" className="underline">robes.market</a> by{' '}
+          Original <a target="_blank" href="https://robes.market" className="underline">robes.market</a> by{' '}
           <a
             target="_blank"
             href="https://twitter.com/worm_emoji"
