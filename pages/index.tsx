@@ -23,10 +23,10 @@ const Robe = ({ robe }: { robe: RobeInfo }) => {
 const IndexPage = ({ robes, lastUpdate }: Props) => {
   return (
     <div className="py-3 md:pb-0 font-mono flex flex-col justify-center items-center gap-4 pt-10 md:w-screen">
-      <h1 className="text-lg md:text-3xl">Katanas</h1>
+      <h1 className="text-lg md:text-3xl">Items of the Fox</h1>
       <div className="text-center max-w-screen-md md:leading-loose">
         <p className="md:text-xl">
-          There are {robes.length} bags for sale with Katanas. The floor
+          There are {robes.length} bags for sale with Items of the Fox. The floor
           price is {robes[0].price} ETH.
         </p>
         <p className="md:text-lg pt-2">
@@ -38,7 +38,7 @@ const IndexPage = ({ robes, lastUpdate }: Props) => {
           >
             worm_emoji
           </a>
-          . weeb.market by{' '}
+          . <a target="_blank" href="https://weeb.market" className="underline">weeb.market</a> and ofthefox.market by{' '}
           <a
             target="_blank"
             href="https://twitter.com/1ofthemanymatts"
