@@ -29,6 +29,10 @@ function Robes({ Component, pageProps }) {
           property="og:description"
           content="Find items 'of the Fox' from the Loot project."
         />
+        <meta
+          property="og:image"
+          content="https://ofthefox.market/og.jpg"
+        />
       </Head>
     </>
   )
